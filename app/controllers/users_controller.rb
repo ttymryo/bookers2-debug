@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    ensure_correct_user
   end
 
   def update
