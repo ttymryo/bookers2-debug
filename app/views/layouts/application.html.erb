@@ -4,6 +4,7 @@
     <title>Bookers2Ver2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/4c5a08076f.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -11,7 +12,9 @@
   <body>
     <%= render 'layouts/header' %>
       <main>
-        <p id="notice"><%= yield %></p>
+        <p id="notice">
+        <%= flash[:notice] %>
+        <%= yield %></p>
       </main>
     <%= render 'layouts/footer' %>
   </body>
