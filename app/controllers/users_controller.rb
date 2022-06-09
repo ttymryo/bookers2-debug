@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update]
+  before_action :ensure_correct_user, only: [:update, :edit, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -12,9 +12,6 @@ class UsersController < ApplicationController
     @book = Book.new
   end
 
-  def edit
-    ensure_correct_user
-  end
 
   def update
     if @user.update(user_params)
