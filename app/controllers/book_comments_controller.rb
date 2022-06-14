@@ -1,4 +1,5 @@
 class BookCommentsController < ApplicationController
+  before_action :set_book
 
   def create
     book = Book.find(params[:book_id])
@@ -10,7 +11,10 @@ class BookCommentsController < ApplicationController
 
   def destroy
     BookComment.find(params[:id]).destroy
-    redirect_to book_path(params[:book_id])
+  end
+
+  def set_book
+    @book = Book.find(params[:book_id])
   end
 
   private
