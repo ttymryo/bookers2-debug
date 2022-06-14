@@ -1,1 +1,2 @@
 $('.comment<%= params[:book_comment_id] %>').html("<%= j(render partial: 'book_comments/index', locals: {book: @book}) %>");
+$('.book_count<%= params[:book_id] %>').html("コメント数:<%= @book.book_comments.count %>");
