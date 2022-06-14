@@ -27,7 +27,7 @@
       </table>
       <table class="comment<%= @book_comment.id %>">
         <%= render partial: 'book_comments/index', locals: {book: @book} %>
-      </table>
+      </table class="new_comment">
       <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
     </div>
   </div>
