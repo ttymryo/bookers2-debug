@@ -1,1 +1,2 @@
 $('.favorites<%= params[:book_id] %>').html("<%= j(render partial: 'favorites/favorites', locals: {book: @book}) %>");
+$('.book-index').html("<%= escape_javascript(render partial: 'books/index', locals: {books: @book_week}) %>");
