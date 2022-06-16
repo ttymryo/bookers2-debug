@@ -2,4 +2,4 @@ $('.favorites<%= params[:book_id] %>').html("<%= escape_javascript(render partia
 clearTimeout(timer)
 var timer = setTimeout(() => {
     $('.book-index').html("<%= escape_javascript(render partial: 'books/index', locals: {books: @book_week}) %>");
-}, 1000);
+}, 3000);
