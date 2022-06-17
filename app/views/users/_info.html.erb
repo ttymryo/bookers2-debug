@@ -32,6 +32,26 @@
       <i class="fas fa-user-cog"></i>
     <% end %>
   <% else %>
-    <%= render 'relationships/follow', user: user %>
+    <table class="table">
+      <tr>
+        <td>
+        <%= render 'relationships/follow', user: user %>
+        </td>
+        <td>
+          <% if @is_room == true %>
+            <%= link_to 'chatを再開', room_path(@room_id) %>
+          <% else %>
+            <%= form_with model: Room.new do |f| %>
+              <%= fields_for @entry do |e| %>
+                <% e.hidden_field :user_id, value: @user.id %>
+                <%= f.button type: :submit do %>
+                  chatを始める
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
   <% end %>
 </div>
