@@ -1,0 +1,11 @@
+<% @another_entries.each do |entry| %>
+  <%= link_to room_path(entry.rom) do %>
+    <div>
+      <%= link_to user_path(entry.user) do %>
+        <%= image_tag entry.user.get_profile_image %>
+      <% end %>
+    </div>
+    <%= entry.user.name %>
+    <%= Massage.find_by(id: entry.room.message_ids.last)&.body %>
+  <% end %>
+<% end %>
