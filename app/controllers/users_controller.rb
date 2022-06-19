@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = Book.new
     message
+    follow_check
   end
 
   def index
@@ -38,6 +39,18 @@ class UsersController < ApplicationController
         @room = Room.new
         @entry = Entry.new
       end
+    end
+  end
+
+  def follow_check
+    partner = Relationship.where(follower_id: @user.id,followed_id: current_user.id)
+    myself = Relationship.where(follower_id: current_user.id,followed_id: @user.id)
+    if myself.blank?
+      @follow_check = false
+    elsif partner.blank?
+      @follow_check = false
+    else
+      @follow_check = true
     end
   end
 

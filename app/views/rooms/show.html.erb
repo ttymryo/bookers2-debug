@@ -5,12 +5,15 @@
 <% if @messages.present? %>
   <% @messages.each do |m| %>
     <% if m.user_id == current_user.id %>
-      <p>
+      <div>
+        <%= image_tag m.user.get_profile_image, size:"50x50" %>
         <%= m.body %>
-      </p>
+      </div>
     <% else %>
-      <%= image_tag m.user.get_profile_image %>
-      <%= m.body %>
+      <div>
+        <%= image_tag m.user.get_profile_image, size:"50x50" %>
+        <%= m.body %>
+      </div>
     <% end %>
   <% end %>
 <% else %>

@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:show]
 
   def create
     room = Room.create
@@ -23,5 +24,28 @@ class RoomsController < ApplicationController
     @message = Message.new
     @entries = @room.entries
     @another_entry = @entries.where.not(user_id: current_user.id).first
+  end
+
+  private
+
+  def ensure_correct_user
+    @now_room = Room.find(params[:id])
+    rooms = Entry.where(user_id: current_user.id,room_id: @now_room.id)
+    if rooms.blank?
+      redirect_to rooms_path
+    else
+      follow_check
+    end
+  end
+
+  def follow_check
+    room_partner = Entry.where(room_id: @now_room.id).where.not(user_id: current_user.id)
+    partner = Relationship.where(follower_id: room_partner.select(:user_id),followed_id: current_user)
+    myself = Relationship.where(follower_id: current_user,followed_id: room_partner.select(:user_id))
+    if myself.blank?
+      redirect_to rooms_path, notice: "FF外です"
+    elsif partner.blank?
+      redirect_to rooms_path, notice: "FF外です"
+    end
   end
 end

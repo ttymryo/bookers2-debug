@@ -7,6 +7,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book_comment = BookComment.new
     message
+    follow_check
   end
 
   def index
@@ -54,7 +55,7 @@ class BooksController < ApplicationController
   end
 
   def message
-    @current_entry = Entry.where(uesr_id: current_user.id)
+    @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @book.user.id)
     unless @book.user.id == current_user.id
       @current_entry.each do |current|
@@ -69,6 +70,18 @@ class BooksController < ApplicationController
         @room = Room.new
         @entry = Entry.new
       end
+    end
+  end
+
+  def follow_check
+    partner = Relationship.where(follower_id: @book.user.id,followed_id: current_user.id)
+    myself = Relationship.where(follower_id: current_user.id,followed_id: @book.user.id)
+    if myself.blank?
+      @follow_check = false
+    elsif partner.blank?
+      @follow_check = false
+    else
+      @follow_check = true
     end
   end
 
