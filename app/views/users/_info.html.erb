@@ -44,9 +44,9 @@
             <%= form_with model: Room.new do |f| %>
               <%= fields_for @entry do |e| %>
                 <% e.hidden_field :user_id, value: user.id %>
-                <%= f.button type: :submit do %>
-                  chatを始める
-                <% end %>
+              <% end %>
+              <%= f.button type: :submit do %>
+                chatを始める
               <% end %>
             <% end %>
           <% end %>

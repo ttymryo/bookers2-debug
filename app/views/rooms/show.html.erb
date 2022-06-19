@@ -1,22 +1,26 @@
 <h2>
-  <%= @another_entry.user.name"さんとのメッセージ" %>
+  <%= @another_entry.user.name %>
+  さんとのメッセージ
 </h2>
-
-<% @messages.each do |m| %>
-  <% if m.user_id == current_user.id %>
-    <p>
+<% if @messages.present? %>
+  <% @messages.each do |m| %>
+    <% if m.user_id == current_user.id %>
+      <p>
+        <%= m.body %>
+      </p>
+    <% else %>
+      <%= image_tag m.user.get_profile_image %>
       <%= m.body %>
-    </p>
-  <% else %>
-    <%= image_tag m.user.get_profile_image %>
-    <%= m.body %>
+    <% end %>
   <% end %>
+<% else %>
+ <p>No messages</p>
 <% end %>
 
   <div>
-    <%= form_with model: Massage.new do |f| %>
+    <%= form_with model: Message.new do |f| %>
       <%= f.text_field :body %>
-      <% f.hidden_field :room_id, :value => @room.id %>
+      <%= f.hidden_field :room_id, :value => @room.id %>
       <%= f.submit "送信する" %>
     <% end %>
   </div>

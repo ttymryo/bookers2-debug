@@ -1,11 +1,31 @@
-<% @another_entries.each do |entry| %>
-  <%= link_to room_path(entry.rom) do %>
-    <div>
-      <%= link_to user_path(entry.user) do %>
-        <%= image_tag entry.user.get_profile_image %>
-      <% end %>
-    </div>
-    <%= entry.user.name %>
-    <%= Massage.find_by(id: entry.room.message_ids.last)&.body %>
-  <% end %>
-<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Last Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @another_entries.each do |entry| %>
+        <tr>
+          <td>
+            <%= link_to user_path(entry.user) do %>
+              <%= image_tag entry.user.get_profile_image, size:'50x50' %>
+            <% end %>
+          </td>
+          <td>
+            <%= entry.user.name %>
+          </td>
+          <td>
+            <%= Message.find_by(id: entry.room.message_ids.last)&.body %>
+          </td>
+          <td>
+            <%= link_to room_path(entry.room) do %>
+            DMへ
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

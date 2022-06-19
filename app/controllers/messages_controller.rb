@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     if message.save
       redirect_to room_path(message.room)
     else
-      redirect_back(fallback_location: room_path)
+      redirect_to request.referer
     end
   end
 
