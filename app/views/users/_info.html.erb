@@ -38,7 +38,7 @@
         <%= render 'relationships/follow', user: user %>
         </td>
         <td>
-          <% if @follow_check == true %>
+          <% if current_user.following?(user) && user.following?(current_user) %>
             <% if @is_room == true %>
               <%= link_to 'chatを再開', room_path(@room_id) %>
             <% else %>
