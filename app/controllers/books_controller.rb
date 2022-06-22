@@ -7,7 +7,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book_comment = BookComment.new
     message
-    follow_check
+    view_count
   end
 
   def index
@@ -73,15 +73,12 @@ class BooksController < ApplicationController
     end
   end
 
-  def follow_check
-    partner = Relationship.where(follower_id: @book.user.id,followed_id: current_user.id)
-    myself = Relationship.where(follower_id: current_user.id,followed_id: @book.user.id)
-    if myself.blank?
-      @follow_check = false
-    elsif partner.blank?
-      @follow_check = false
-    else
-      @follow_check = true
+  def view_count
+    unless @book.user.id == current_user.id
+      book_view = BookView.find_by(user_id: current_user.id,book_id: @book.id)
+      if book_view.nil?
+        BookView.create(user_id: current_user.id,book_id: @book.id)
+      end
     end
   end
 

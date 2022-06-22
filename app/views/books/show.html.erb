@@ -19,6 +19,7 @@
           <td><%= @book.body %></td>
           <td class="favorites<%= @book.id %>"><%= render partial: "favorites/favorites", locals: { book: @book } %></td>
           <td class ="book_count<%= @book.id %>">コメント数:<%= @book.book_comments.count %></td>
+          <td>閲覧数:<%= @book.book_views.count %></td>
           <% if @book.user.id == current_user.id %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
