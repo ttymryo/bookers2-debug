@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
 
   def ensure_correct_user
     @now_room = Room.find(params[:id])
-    rooms = Entry.where(user_id: current_user.id,room_id: @now_room.id)
+    rooms = Entry.where(user_id: current_user.id, room_id: @now_room.id)
     if rooms.blank?
       redirect_to request.referer
     else
@@ -40,12 +40,12 @@ class RoomsController < ApplicationController
 
   def follow_check
     room_partner = Entry.where(room_id: @now_room.id).where.not(user_id: current_user.id)
-    partner = Relationship.where(follower_id: room_partner.select(:user_id),followed_id: current_user)
-    myself = Relationship.where(follower_id: current_user,followed_id: room_partner.select(:user_id))
+    partner = Relationship.where(follower_id: room_partner.select(:user_id), followed_id: current_user)
+    myself = Relationship.where(follower_id: current_user, followed_id: room_partner.select(:user_id))
     if myself.blank?
-      redirect_to request.referer, notice: "FF外です"
+      redirect_to request.referer, notice: 'FF外です'
     elsif partner.blank?
-      redirect_to request.referer, notice: "FF外です"
+      redirect_to request.referer, notice: 'FF外です'
     end
   end
 end

@@ -21,5 +21,4 @@ class BookCommentsController < ApplicationController
   def book_comment_params
     params.permit(:comment)
   end
-
 end
