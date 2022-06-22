@@ -39,7 +39,7 @@
         </td>
         <td>
           <%# chatの処理、実装の仕方が悪かったので応急処置、応用課題終わったら考える　%>
-          <% unless @is_room.blank? %>
+          <% unless @is_room.blank? and @room.blank? %>
             <% if current_user.following?(user) && user.following?(current_user) %>
               <% if @is_room == true %>
                 <%= link_to 'chatを再開', room_path(@room_id) %>
