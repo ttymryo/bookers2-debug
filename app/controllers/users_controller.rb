@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
-    @group = Group.new
   end
 
   def update
