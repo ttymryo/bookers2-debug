@@ -39,16 +39,16 @@
         </td>
         <td>
           <%# chatの処理、実装の仕方が悪かったので応急処置、応用課題終わったら考える　%>
-          <% unless @is_room.blank? and @room.blank? %>
+          <% unless @is_room.blank? and @entry.blank? %>
             <% if current_user.following?(user) && user.following?(current_user) %>
               <% if @is_room == true %>
-                <%= link_to 'chatを再開', room_path(@room_id) %>
+                <%= link_to 'chatを再開', room_path(@room_id), class: "btn btn-sm btn-outline-secondary" %>
               <% else %>
                 <%= form_with model: Room.new do |f| %>
                   <%= fields_for @entry do |e| %>
                     <% e.hidden_field :user_id, value: user.id %>
                   <% end %>
-                  <%= f.button type: :submit do %>
+                  <%= f.button class: "btn btn-sm btn-outline-secondary" do %>
                     chatを始める
                   <% end %>
                 <% end %>

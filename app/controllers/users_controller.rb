@@ -34,7 +34,6 @@ class UsersController < ApplicationController
         end
       end
       unless @is_room
-        @room = Room.new
         @entry = Entry.new
       end
     end
