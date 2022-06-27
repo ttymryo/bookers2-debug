@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>Create Group</h2>
     <%= form_with model: Group.new do |f| %>
-      <% f.hidden_field :owner_id, value: current_user.id %>
+      <%= f.hidden_field :owner_id, value: current_user.id %>
       <div class="form-group">
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control' %>

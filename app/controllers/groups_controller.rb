@@ -1,10 +1,18 @@
 class GroupsController < ApplicationController
-  def new
+  def index
+    @groups = Group.all
   end
 
   def create
-    group = Group.new(group_params)
-    group.save
+    group = Group.create(group_params)
+    group_user = GroupUser.new(user_id: current_user, group_id: group)
+    group_user.save
+    redirect_to groups_path
+  end
+
+  def destroy
+    group = Group.find(params[:id])
+    group.destroy
     redirect_to groups_path
   end
 

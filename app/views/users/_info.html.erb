@@ -46,7 +46,7 @@
               <% else %>
                 <%= form_with model: Room.new do |f| %>
                   <%= fields_for @entry do |e| %>
-                    <% e.hidden_field :user_id, value: user.id %>
+                    <%= e.hidden_field :user_id, value: user.id %>
                   <% end %>
                   <%= f.button class: "btn btn-sm btn-outline-secondary" do %>
                     chatを始める
