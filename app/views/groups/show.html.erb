@@ -9,15 +9,45 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Group detail</h2>
   		<table class='table'>
-  		  <tr>
-          <td><%= image_tag @group.get_image, size:"50x50" %></td>
-          <td><%= @group.name %></td>
-          <td><%= @group.introduction %></td>
-          <% if @group.owner_id == current_user.id %>
-            <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success edit_group_#{@group.id}" %></td>
-            <td><%= link_to "Destroy", group_path(@group), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger destroy_group_#{@group.id}"%></td>
+  		  <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th>オーナー</th>
+            <th>メンバー数</th>
+          </tr>
+        </thead>
+        <tbody>
+    		  <tr>
+            <td><%= image_tag @group.get_image, size:"50x50" %></td>
+            <td><%= @group.name %></td>
+            <td><%= @group.introduction %></td>
+            <td><%= @user.name %></td>
+            <td><%= @group.group_users.count %></td>
+            <% if @group.owner_id == current_user.id %>
+              <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success edit_group_#{@group.id}" %></td>
+              <td><%= link_to "Destroy", group_path(@group), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-sm btn-danger destroy_group_#{@group.id}"%></td>
+            <% else %>
+              <td><%= link_to 'Join Group', group_users_path, class: "btn btn-sm btn-success " %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>メンバー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @group.group_users.each |user| %>
+            <tr>
+              <td><%= image.tag user.get_profile_image, size: '50x50' %></td>
+              <td><%= link_to user.name, user.name %></td>
+            </tr>
           <% end %>
-        </tr>
+        </tbody>
       </table>
     </div>
   </div>

@@ -20,8 +20,9 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
   resources :rooms, only: %i[create index show]
-  
+
   resources :groups
+  resource :group_users
 
   get 'search_result' => 'searches#search_result', as: 'search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
