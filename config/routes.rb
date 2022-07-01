@@ -25,5 +25,7 @@ Rails.application.routes.draw do
   resource :group_users
 
   get 'search_result' => 'searches#search_result', as: 'search'
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
