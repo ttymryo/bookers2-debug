@@ -1,0 +1,2 @@
+class GroupMailsController < ApplicationController
+end

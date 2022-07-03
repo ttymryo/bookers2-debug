@@ -21,8 +21,10 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :rooms, only: %i[create index show]
 
-  resources :groups
-  resource :group_users
+  resources :groups, only: %i[new index show edit create destroy update] do
+    resource :group_users, only: %i[create destroy]
+    resources :group_mails, only: %i[new show create]
+  end
 
   get 'search_result' => 'searches#search_result', as: 'search'
 
