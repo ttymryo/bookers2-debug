@@ -12,13 +12,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
-    to = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @book_week = Book.all.sort do |a, b|
-      b.favorites.where(created_at: from...to).size <=>
-        a.favorites.where(created_at: from...to).size
-    end
+    book_week
   end
 
   def create
@@ -27,7 +21,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book), notice: 'You have created book successfully.'
     else
-      @books = Book.all
+      book_week
       render 'index'
     end
   end
@@ -50,6 +44,15 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
+  end
+
+  def book_week
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @book_week = Book.all.sort do |a, b|
+      b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
+    end
   end
 
   def message

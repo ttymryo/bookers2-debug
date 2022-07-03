@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :books, only: %i[index show edit create destroy update] do
     resource :favorites, only: %i[create destroy]
     resources :book_comments, only: %i[create destroy]
-    resource :book_views, only: [:create]
+    resource :book_views, only: %i[create]
   end
   resources :users, only: %i[index show edit update] do
     resource :relationships, only: %i[create destroy]
@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
-  resources :messages, only: [:create]
+  resources :messages, only: %i[create]
   resources :rooms, only: %i[create index show]
 
   resources :groups, only: %i[new index show edit create destroy update] do
-    resource :group_users, only: %i[create destroy]
     resources :group_mails, only: %i[new show create]
+    resource :group_users, only: %i[create destroy]
   end
 
   get 'search_result' => 'searches#search_result', as: 'search'

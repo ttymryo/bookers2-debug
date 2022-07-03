@@ -86,4 +86,16 @@ Rails.application.configure do
     password: Rails.application.credentials.gmail[:password],
     authentication: :login
   }
+  config.action_mailer.delivery_method = :letter_opener_web
+
+  config.action_mailer.default_url_options = {  protocol: 'https', host: 'https://45dc71fe6a0245ecaa2a253931c33daf.vfs.cloud9.ap-northeast-1.amazonaws.com/' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.gmail[:user_name],
+    password: Rails.application.credentials.gmail[:password],
+    authentication: :login
+  }
 end
