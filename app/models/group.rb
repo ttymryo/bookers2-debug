@@ -7,6 +7,6 @@ class Group < ApplicationRecord
   validates :introduction, presence: true
 
   def get_image
-    group_image.attached? ? profile_image : 'no_image.jpg'
+    group_image.attached? ? profile_image : '/no_image.jpg'
   end
 end
