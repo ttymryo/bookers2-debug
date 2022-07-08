@@ -55,6 +55,14 @@ class BooksController < ApplicationController
     end
   end
 
+  def newsort
+    @books_new = Book.all.order(created_at: :desc)
+  end
+
+  def starsort
+    @books_star = Book.all.order(star: :desc)
+  end
+
   def message
     @current_entry = Entry.where(user_id: current_user.id)
     @another_entry = Entry.where(user_id: @book.user.id)
