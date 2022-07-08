@@ -1,5 +1,7 @@
-$('#book_<%= @book.id %> .favorites').html("<%= j(render partial: 'favorites/favorites', locals: {book: @book}) %>");
-clearTimeout(timer)
-var timer = setTimeout(() => {
-    $('.book-index').html("<%= escape_javascript(render partial: 'books/index', locals: {books: @book_week}) %>");
-}, 3000);
+$('#book_<%= @book.id %> .favorites').html("<%= escape_javascript(render partial: 'favorites/favorites', locals: {book: @book}) %>");
+
+<!--clearTimeout(timer)-->
+<!--var timer = setTimeout(() => {-->
+    <!--$('.book-index').html("
+    <!-- %= escape_javascript(render partial: 'books/index', locals: {books: @book_week}) %>") -->
+<!--}, 3000);-->

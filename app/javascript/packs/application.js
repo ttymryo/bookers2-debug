@@ -17,4 +17,6 @@ import Chart from 'chart.js/auto';
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+window.$ = window.jQuery = require('jquery')
+require('packs/raty')
 global.Chart = Chart;
