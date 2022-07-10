@@ -11,9 +11,10 @@ Rails.application.routes.draw do
     resource :favorites, only: %i[create destroy]
     resources :book_comments, only: %i[create destroy]
     resource :book_views, only: %i[create]
-    get "newsort", to: "books#newsort"
-    get "starsort", to: "books#starsort"
   end
+  get "newsort", to: "books#newsort"
+  get "starsort", to: "books#starsort"
+
   resources :users, only: %i[index show edit update] do
     resource :relationships, only: %i[create destroy]
     get 'followings' => 'relationships#followings', as: 'followings'

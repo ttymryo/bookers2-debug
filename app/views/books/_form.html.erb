@@ -12,6 +12,7 @@
     <%= f.hidden_field :star, id: :star %>
   </div>
   <script>
+    $('#star-rate-<%= book.id %>').empty();
     $('#star').raty({
       size     : 36,
       starOff:  '<%= asset_path('/star-off.png') %>',
