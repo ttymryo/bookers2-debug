@@ -9,9 +9,9 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= link_to '新しい順', newsort_path, remote: true %>
+      <%= link_to '新しい順', newsort_books_path, remote: true %>
       |
-      <%= link_to '評価の高い順', starsort_path, remote: true %>
+      <%= link_to '評価の高い順', starsort_books_path, remote: true %>
       <div class="book-index">
         <%= render 'index', books: @book_week %>
       </div>
